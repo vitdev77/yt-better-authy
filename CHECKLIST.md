@@ -62,8 +62,8 @@
 == PART 2 ==
 
 - Showcase `onRequest` and `onResponse`
-- Showcase Full Cycle Again
 - Add Convenience Links for Auth Pages
+- Showcase Full Cycle Again
 - OPTIONS - **autoSignIn**
   - Showcase
 - OPTIONS - **advanced.database.generateId**
