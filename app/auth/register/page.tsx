@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <div className="flex flex-col items-center space-y-4">
         <ReturnButton href="/" label="Home" btnVariant="ghost" />
 
-        <h1 className="text-3xl font-bold">Register</h1>
+        <h1 className="text-3xl font-bold">Sign up for Better Authy</h1>
       </div>
 
       <RegisterForm />
@@ -16,7 +16,7 @@ export default function RegisterPage() {
       <p className="text-muted-foreground text-sm">
         Already have an account?{" "}
         <Link href={"/auth/login"} className="text-primary underline">
-          Login
+          Sign in
         </Link>
       </p>
     </div>

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signInEmailAction } from "@/actions/sign-in-email.action";
+import { IconLoader2 } from "@tabler/icons-react";
 
 export const LoginForm = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -47,7 +48,7 @@ export const LoginForm = () => {
       </div>
 
       <Button type="submit" className="w-full" disabled={isPending}>
-        Login
+        {isPending ? "Signing in..." : "Sign in"}
       </Button>
     </form>
   );

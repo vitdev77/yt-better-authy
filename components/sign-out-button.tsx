@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { IconLoader2 } from "@tabler/icons-react";
 
 export const SignOutButton = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -32,12 +33,12 @@ export const SignOutButton = () => {
 
   return (
     <Button
-      variant={"destructive"}
+      variant={"outline"}
       size={"sm"}
       onClick={handleClick}
       disabled={isPending}
     >
-      Sign Out
+      Sign out
     </Button>
   );
 };

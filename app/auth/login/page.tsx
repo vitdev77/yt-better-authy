@@ -8,15 +8,15 @@ export default async function LoginPage() {
       <div className="flex flex-col items-center space-y-4">
         <ReturnButton href="/" label="Home" btnVariant="ghost" />
 
-        <h1 className="text-3xl font-bold">Login</h1>
+        <h1 className="text-3xl font-bold">Sign in to Better Authy</h1>
       </div>
 
       <LoginForm />
 
       <p className="text-muted-foreground text-sm">
-        Don&apos;t have an account?{" "}
+        New to Better Authy?{" "}
         <Link href={"/auth/register"} className="text-primary underline">
-          Create one
+          Create an account
         </Link>
       </p>
     </div>
