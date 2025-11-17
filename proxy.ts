@@ -3,7 +3,7 @@ import { getSessionCookie } from "better-auth/cookies";
 
 const protectedRoutes = ["/profile"];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { nextUrl } = req;
   const sessionCookie = getSessionCookie(req);
 
@@ -25,5 +25,8 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [],
+  matcher: [
+    // Exclude API routes, static files, image optimizations, favicon.ico, and .png files
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.png$).*)",
+  ],
 };
