@@ -3,7 +3,7 @@
 import * as React from "react";
 import { deleteUserAction } from "@/actions/delete-user.action";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -56,7 +56,12 @@ export const DeleteUserButton = ({ userId }: DeleteUserButtonProps) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleClick}>Continue</AlertDialogAction>
+          <AlertDialogAction
+            onClick={handleClick}
+            className={buttonVariants({ variant: "destructive" })}
+          >
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

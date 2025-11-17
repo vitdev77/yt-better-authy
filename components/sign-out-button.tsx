@@ -1,11 +1,22 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "@/components/ui/button";
 import { signOut } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { IconLoader2 } from "@tabler/icons-react";
+import { LogOut } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 
 export const SignOutButton = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -32,13 +43,24 @@ export const SignOutButton = () => {
   }
 
   return (
-    <Button
-      variant={"outline"}
-      size={"sm"}
-      onClick={handleClick}
-      disabled={isPending}
-    >
-      Sign out
-    </Button>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button variant={"outline"} size={"sm"} disabled={isPending}>
+          <LogOut /> Sign out
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Please confirm</AlertDialogTitle>
+          <AlertDialogDescription>
+            Are you sure you want to sign out?
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={handleClick}>Sign out</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
