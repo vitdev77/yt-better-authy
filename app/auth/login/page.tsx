@@ -1,12 +1,12 @@
-import { LoginForm } from '@/components/login-form';
-import { ReturnButton } from '@/components/return-button';
-import Link from 'next/link';
+import { LoginForm } from "@/components/login-form";
+import { ReturnButton } from "@/components/return-button";
+import Link from "next/link";
 
-export default function LoginPage() {
+export default async function LoginPage() {
   return (
     <div className="px-8 py-16 container mx-auto flex flex-col min-h-screen items-center justify-center max-w-5xl space-y-8">
       <div className="flex flex-col items-center space-y-4">
-        <ReturnButton href="/" label="Home" />
+        <ReturnButton href="/" label="Home" btnVariant="ghost" />
 
         <h1 className="text-3xl font-bold">Login</h1>
       </div>
@@ -14,8 +14,8 @@ export default function LoginPage() {
       <LoginForm />
 
       <p className="text-muted-foreground text-sm">
-        Don&apos;t have an account?{' '}
-        <Link href={'/auth/register'} className="text-primary underline">
+        Don&apos;t have an account?{" "}
+        <Link href={"/auth/register"} className="text-primary underline">
           Create one
         </Link>
       </p>

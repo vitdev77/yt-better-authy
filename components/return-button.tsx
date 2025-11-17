@@ -5,11 +5,22 @@ import { ArrowLeftIcon } from 'lucide-react';
 interface ReturnButtonProps {
   href: string;
   label: string;
+  btnVariant?:
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link';
 }
 
-export const ReturnButton = ({ href, label }: ReturnButtonProps) => {
+export const ReturnButton = ({
+  href,
+  label,
+  btnVariant,
+}: ReturnButtonProps) => {
   return (
-    <Button size="sm" variant={'ghost'} asChild>
+    <Button size="sm" variant={btnVariant} asChild>
       <Link href={href}>
         <ArrowLeftIcon /> {label}
       </Link>

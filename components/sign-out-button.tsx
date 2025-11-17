@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import * as React from 'react';
-import { Button } from '@/components/ui/button';
-import { signOut } from '@/lib/auth-client';
-import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
+import * as React from "react";
+import { Button } from "@/components/ui/button";
+import { signOut } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export const SignOutButton = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -24,7 +24,7 @@ export const SignOutButton = () => {
         },
         onSuccess: () => {
           toast.success("You've logged out. See you soon!");
-          router.push('/auth/login');
+          router.push("/auth/login");
         },
       },
     });
@@ -32,8 +32,8 @@ export const SignOutButton = () => {
 
   return (
     <Button
-      variant={'destructive'}
-      size={'sm'}
+      variant={"destructive"}
+      size={"sm"}
       onClick={handleClick}
       disabled={isPending}
     >
