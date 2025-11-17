@@ -1,18 +1,13 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { GetStartedButton } from "@/components/get-started-button";
 
 export default function Home() {
   return (
-    <div className="flex items-center p-6 gap-4">
-      <Button asChild>
-        <Link href="/auth/login">Login</Link>
-      </Button>
-      <Button asChild>
-        <Link href="/profile">Profile</Link>
-      </Button>
-      <Button asChild>
-        <Link href="/auth/register">Register</Link>
-      </Button>
+    <div className="flex items-center justify-center h-dvh">
+      <div className="flex flex-col items-center justify-center gap-8">
+        <h1 className="text-6xl font-bold">Better Authy</h1>
+
+        <GetStartedButton />
+      </div>
     </div>
   );
 }
