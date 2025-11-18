@@ -32,10 +32,20 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-sm w-full space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full space-y-4"
+      autoComplete="off"
+    >
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input id="email" name="email" type="email" disabled={isPending} />
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          disabled={isPending}
+          autoComplete="off"
+        />
       </div>
       <div className="space-y-2">
         <Label htmlFor="password">Password</Label>
@@ -44,6 +54,7 @@ export const LoginForm = () => {
           name="password"
           type="password"
           disabled={isPending}
+          autoComplete="new-password"
         />
       </div>
 

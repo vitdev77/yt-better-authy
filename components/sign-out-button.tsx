@@ -58,7 +58,7 @@ export const SignOutButton = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={handleClick}>Sign out</AlertDialogAction>
+          <AlertDialogAction onClick={handleClick}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

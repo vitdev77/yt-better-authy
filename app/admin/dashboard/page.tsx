@@ -2,7 +2,21 @@ import {
   DeleteUserButton,
   PlaceholderDeleteUserButton,
 } from "@/components/delete-user-button";
+import {
+  EditUserButton,
+  PlaceholderEditUserButton,
+} from "@/components/edit-user-button";
 import { ReturnButton } from "@/components/return-button";
+import { Button } from "@/components/ui/button";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { UserRoleSelect } from "@/components/user-role-select";
 import { auth } from "@/lib/auth";
 import { UserRole } from "@prisma/client";
@@ -59,40 +73,53 @@ export default async function AdminPage() {
         </p>
       </div>
 
-      <div className="w-full overflow-x-auto">
-        <table className="table-auto min-w-full whitespace-nowrap">
-          <thead>
-            <tr className="border-b text-sm text-left">
-              <th className="px-4 py-2">ID</th>
-              <th className="px-4 py-2">Name</th>
-              <th className="px-4 py-2">Email</th>
-              <th className="px-4 py-2">Role</th>
-              <th className="px-4 py-2 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
+      <div className="overflow-hidden rounded-md border w-full">
+        <Table>
+          <TableHeader className="bg-muted">
+            <TableRow>
+              <TableHead>User ID</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>Role</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
             {sortedUsers.map((user) => (
-              <tr key={user.id} className="border-b text-sm text-left">
-                <td className="px-4 py-2">{user.id.slice(0, 8)}</td>
-                <td className="px-4 py-2">{user.name}</td>
-                <td className="px-4 py-2">{user.email}</td>
-                <td className="px-4 py-2">
+              <TableRow key={user.id}>
+                <TableCell className="font-medium font-mono">
+                  {user.id.slice(0, 8)}
+                  <span className="text-xs text-muted-foreground">
+                    ...{user.id.slice(-3)}
+                  </span>
+                </TableCell>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>
                   <UserRoleSelect
                     userId={user.id}
                     role={user.role as UserRole}
                   />
-                </td>
-                <td className="px-4 py-2 text-right">
-                  {user.role === "USER" ? (
-                    <DeleteUserButton userId={user.id} />
-                  ) : (
-                    <PlaceholderDeleteUserButton />
-                  )}
-                </td>
-              </tr>
+                </TableCell>
+                <TableCell className="text-right">
+                  <div className="flex items-center justify-end gap-2">
+                    {user.id === session.user.id ? (
+                      <PlaceholderEditUserButton />
+                    ) : (
+                      <EditUserButton userId={user.id} />
+                    )}
+
+                    {user.role === "USER" ? (
+                      <DeleteUserButton userId={user.id} />
+                    ) : (
+                      <PlaceholderDeleteUserButton />
+                    )}
+                  </div>
+                </TableCell>
+              </TableRow>
             ))}
-          </tbody>
-        </table>
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

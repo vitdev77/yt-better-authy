@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowLeftIcon } from 'lucide-react';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftIcon } from "lucide-react";
 
 interface ReturnButtonProps {
   href: string;
   label: string;
   btnVariant?:
-    | 'default'
-    | 'destructive'
-    | 'outline'
-    | 'secondary'
-    | 'ghost'
-    | 'link';
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
 }
 
 export const ReturnButton = ({
@@ -20,7 +20,7 @@ export const ReturnButton = ({
   btnVariant,
 }: ReturnButtonProps) => {
   return (
-    <Button size="sm" variant={btnVariant} asChild>
+    <Button size="sm" variant={btnVariant} asChild tabIndex={-1}>
       <Link href={href}>
         <ArrowLeftIcon /> {label}
       </Link>
