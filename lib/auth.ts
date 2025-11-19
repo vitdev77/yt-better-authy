@@ -9,6 +9,7 @@ import { hashPassword, verifyPassword } from "@/lib/argon2";
 import { getValidDomains, normalizeName } from "@/lib/utils";
 import { UserRole } from "@prisma/client";
 import { ac, roles } from "@/lib/permissions";
+import { sendEmailAction } from "@/actions/send-email.action";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -31,6 +32,26 @@ export const auth = betterAuth({
     password: {
       hash: hashPassword,
       verify: verifyPassword,
+    },
+    requireEmailVerification: true,
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    expiresIn: 60 * 60,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url }) => {
+      const link = new URL(url);
+      link.searchParams.set("callbackURL", "/auth/verify");
+
+      await sendEmailAction({
+        to: user.email,
+        subject: "Verify Your Email Address",
+        meta: {
+          description:
+            "Please verify your email address to complete registration.",
+          link: String(link),
+        },
+      });
     },
   },
   hooks: {

@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signInEmailAction } from "@/actions/sign-in-email.action";
-import { IconLoader2 } from "@tabler/icons-react";
 
 export const LoginForm = () => {
   const [isPending, setIsPending] = React.useState(false);

@@ -15,7 +15,7 @@ import {
   AlertDialogHeader,
   AlertDialogFooter,
 } from "@/components/ui/alert-dialog";
-import { IconLoader2, IconTrash, IconTrashOff } from "@tabler/icons-react";
+import { IconLoader2, IconTrash } from "@tabler/icons-react";
 
 interface DeleteUserButtonProps {
   userId: string;
@@ -70,9 +70,9 @@ export const DeleteUserButton = ({ userId }: DeleteUserButtonProps) => {
 
 export const PlaceholderDeleteUserButton = () => {
   return (
-    <Button variant={"destructive"} size={"icon-sm"} disabled>
+    <Button variant={"outline"} size={"icon-sm"} disabled>
       <span className="sr-only">Delete User</span>
-      <IconTrashOff />
+      <IconTrash />
     </Button>
   );
 };

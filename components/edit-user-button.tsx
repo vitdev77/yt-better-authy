@@ -21,7 +21,7 @@ export const EditUserButton = ({ userId }: EditUserButtonProps) => {
 
 export const PlaceholderEditUserButton = () => {
   return (
-    <Button size={"icon-sm"} disabled>
+    <Button variant={"outline"} size={"icon-sm"} disabled>
       <span className="sr-only">Edit User</span>
       <IconPencil />
     </Button>
