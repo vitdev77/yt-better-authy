@@ -18,8 +18,11 @@ export default async function LoginPage() {
       <LoginForm />
 
       <p className="text-muted-foreground text-sm">
-        Don&quot;t have an account?{" "}
-        <Link href={"/auth/register"} className="text-primary underline">
+        Don&apos;t have an account?{" "}
+        <Link
+          href={"/auth/register"}
+          className="text-primary underline-offset-4 underline"
+        >
           Sign up
         </Link>
       </p>

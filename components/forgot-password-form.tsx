@@ -1,14 +1,14 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { sendVerificationEmail } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { forgetPassword } from "@/lib/auth-client";
 
-export const SendVerificationEmailForm = () => {
+export const ForgotPasswordForm = () => {
   const [isPending, setIsPending] = React.useState(false);
   const router = useRouter();
 
@@ -20,9 +20,9 @@ export const SendVerificationEmailForm = () => {
 
     if (!email) return toast.error("Please enter your email.");
 
-    await sendVerificationEmail({
+    await forgetPassword({
       email,
-      callbackURL: "/auth/verify",
+      redirectTo: "/auth/reset-password",
       fetchOptions: {
         onRequest: () => {
           setIsPending(true);
@@ -34,23 +34,33 @@ export const SendVerificationEmailForm = () => {
           toast.error(ctx.error.message);
         },
         onSuccess: () => {
-          toast.success("Verification email sent successfully!");
-          router.push("/auth/verify/success");
+          toast.success("Reset link sent to your email!");
+          router.push("/auth/forgot-password/success");
         },
       },
     });
   }
 
   return (
-    <form className="max-w-sm w-full space-y-4" onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-2">
+    <form
+      onSubmit={handleSubmit}
+      className="w-full space-y-4"
+      autoComplete="off"
+    >
+      <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" name="email" disabled={isPending} />
-
-        <Button type="submit" disabled={isPending}>
-          Resend Verification Email
-        </Button>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          disabled={isPending}
+          autoComplete="off"
+        />
       </div>
+
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? "Sending..." : "Send password reset email"}
+      </Button>
     </form>
   );
 };

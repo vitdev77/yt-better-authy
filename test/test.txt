@@ -30,7 +30,7 @@ BETTER_AUTH_SECRET=Vly1Vh5GbfbfT6z55mYPD8O9uZlHNgfP
 BETTER_AUTH_URL=http://localhost:3000
 NEXT_PUBLIC_API_URL=http://localhost:3000
 
-ADMIN_EMAILS="naruto@example.com;luffy@example.com;ichigo@example.com;vit.dev.77@gmail.com"
+ADMIN_EMAILS=
 
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=

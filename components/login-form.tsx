@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { signInEmailAction } from "@/actions/sign-in-email.action";
+import Link from "next/link";
 
 export const LoginForm = () => {
   const [isPending, setIsPending] = React.useState(false);
@@ -47,7 +48,15 @@ export const LoginForm = () => {
         />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
+        <div className="flex items-center">
+          <Label htmlFor="password">Password</Label>
+          <Link
+            href={"/auth/forgot-password"}
+            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+          >
+            Forgot your password?
+          </Link>
+        </div>
         <Input
           id="password"
           name="password"
