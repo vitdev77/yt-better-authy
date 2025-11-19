@@ -1,10 +1,11 @@
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
+import Link from "next/link";
+import { auth } from "@/lib/auth";
 import { ReturnButton } from "@/components/return-button";
 import { SignOutButton } from "@/components/sign-out-button";
 import { Button } from "@/components/ui/button";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
-import Link from "next/link";
-import { redirect } from "next/navigation";
+import { UpdateUserForm } from "@/components/update-user-form";
 
 export default async function ProfilePage() {
   const headersList = await headers();
@@ -50,9 +51,39 @@ export default async function ProfilePage() {
         </Button>
       </div>
 
+      {session.user.image ? (
+        <img
+          src={session.user.image}
+          alt="User Image"
+          className="size-24 border border-primary rounded-md object-cover"
+        />
+      ) : (
+        <div className="size-24 border border-primary rounded-md bg-primary text-primary-foreground flex items-center justify-center">
+          <span className="uppercase text-lg font-bold">
+            {session.user.name.slice(0, 2)}
+          </span>
+        </div>
+      )}
+
       <pre className="text-sm overflow-clip">
         {JSON.stringify(session, null, 2)}
       </pre>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div className="space-y-4 p-4 rounded-b-md border border-t-8 border-blue-600 w-full">
+          <h2 className="text-2xl font-bold">Update User</h2>
+
+          <UpdateUserForm
+            name={session.user.name}
+            image={session.user.image ?? ""}
+          />
+        </div>
+
+        <div className="space-y-4 p-4 rounded-b-md border border-t-8 border-red-600 w-full">
+          <h2 className="text-2xl font-bold">Change Password</h2>
+          Soon!
+        </div>
+      </div>
     </div>
   );
 }
