@@ -1,4 +1,5 @@
 import { LoginForm } from "@/components/login-form";
+import { MagicLinkLoginForm } from "@/components/magic-link-login-form";
 import { ReturnButton } from "@/components/return-button";
 import { SignInOauthButton } from "@/components/sign-in-oauth-button";
 import { FieldGroup, FieldSeparator } from "@/components/ui/field";
@@ -14,6 +15,12 @@ export default async function LoginPage() {
           Sign in to your account
         </h1>
       </div>
+
+      <MagicLinkLoginForm />
+
+      <FieldGroup className="mb-6">
+        <FieldSeparator>or</FieldSeparator>
+      </FieldGroup>
 
       <LoginForm />
 

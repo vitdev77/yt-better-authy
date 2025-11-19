@@ -77,7 +77,7 @@ export const ResetPasswordForm = ({ token }: ResetPasswordFormProps) => {
       </div>
 
       <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? "Please waiting..." : "Reset password"}
+        {isPending ? "Please wait..." : "Reset password"}
       </Button>
     </form>
   );

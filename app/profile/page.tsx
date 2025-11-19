@@ -6,6 +6,7 @@ import { ReturnButton } from "@/components/return-button";
 import { SignOutButton } from "@/components/sign-out-button";
 import { Button } from "@/components/ui/button";
 import { UpdateUserForm } from "@/components/update-user-form";
+import { ChangePasswordForm } from "@/components/change-password-form";
 
 export default async function ProfilePage() {
   const headersList = await headers();
@@ -81,7 +82,8 @@ export default async function ProfilePage() {
 
         <div className="space-y-4 p-4 rounded-b-md border border-t-8 border-red-600 w-full">
           <h2 className="text-2xl font-bold">Change Password</h2>
-          Soon!
+
+          <ChangePasswordForm />
         </div>
       </div>
     </div>
