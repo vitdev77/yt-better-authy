@@ -56,11 +56,11 @@ export default async function ProfilePage() {
         <img
           src={session.user.image}
           alt="User Image"
-          className="size-24 border border-primary rounded-md object-cover"
+          className="size-24 rounded-full object-cover"
         />
       ) : (
-        <div className="size-24 border border-primary rounded-md bg-primary text-primary-foreground flex items-center justify-center">
-          <span className="uppercase text-lg font-bold">
+        <div className="size-24 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+          <span className="uppercase text-3xl font-medium">
             {session.user.name.slice(0, 2)}
           </span>
         </div>

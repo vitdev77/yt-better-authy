@@ -49,7 +49,7 @@ export const MagicLinkLoginForm = () => {
       className="max-w-sm rounded-md border-2 border-b-0 border-purple-600 overflow-hidden w-full"
     >
       <summary className="flex items-center justify-center gap-2 px-2 py-1.75 bg-purple-600 text-white hover:bg-purple-600/80 transition text-sm font-medium cursor-pointer">
-        <WandSparkles size={16} /> Try Magic Link
+        <WandSparkles size={16} /> Sign in with Magic Link
       </summary>
 
       <form onSubmit={handleSubmit} className="p-2">

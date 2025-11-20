@@ -2,9 +2,16 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { toast } from "sonner";
 import { sendVerificationEmail } from "@/lib/auth-client";
 
@@ -42,15 +49,43 @@ export const SendVerificationEmailForm = () => {
   }
 
   return (
-    <form className="max-w-sm w-full space-y-4" onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" name="email" disabled={isPending} />
-
-        <Button type="submit" disabled={isPending}>
-          Resend Verification Email
-        </Button>
-      </div>
-    </form>
+    <div className="flex flex-col gap-6">
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">Verify Email</CardTitle>
+          <CardDescription>
+            Enter your email below to resend verification link.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={handleSubmit}
+            className="w-full space-y-4"
+            autoComplete="off"
+          >
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  disabled={isPending}
+                  // autoComplete="off"
+                  autoFocus
+                  // required
+                />
+              </Field>
+              <Field>
+                <Button type="submit" disabled={isPending}>
+                  Resend Verification Email
+                </Button>
+              </Field>
+            </FieldGroup>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 };

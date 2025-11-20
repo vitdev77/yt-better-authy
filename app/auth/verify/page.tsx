@@ -12,22 +12,30 @@ export default async function Page({ searchParams }: PageProps) {
   if (!error) redirect("/profile");
 
   return (
-    <div className="px-8 py-16 container mx-auto flex flex-col min-h-screen items-center justify-center max-w-sm space-y-6">
-      <div className="flex flex-col items-center space-y-4">
+    <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
+      <div className="flex w-full max-w-sm flex-col gap-6">
         <ReturnButton href="/auth/login" label="Sign in" btnVariant="ghost" />
 
-        <h1 className="text-2xl font-bold text-center">Verify Email</h1>
+        <div className="text-sm text-center text-destructive">
+          <p className="font-bold">
+            {error === "invalid_token" || error === "token_expired"
+              ? "Your token is invalid or expired."
+              : error === "email_not_verified"
+              ? "Please verify your email,"
+              : "Oops! Something went wrong."}
+          </p>
+          <p>
+            {" "}
+            {error === "invalid_token" || error === "token_expired"
+              ? "Please request a new one."
+              : error === "email_not_verified"
+              ? "or request a new verification below"
+              : "Please try again."}
+          </p>
+        </div>
+
+        <SendVerificationEmailForm />
       </div>
-
-      <p className="text-destructive text-center">
-        {error === "invalid_token" || error === "token_expired"
-          ? "Your token is invalid or expired. Please request a new one."
-          : error === "email_not_verified"
-          ? "Please verify your email, or request a new verification below"
-          : "Oops! Something went wrong. Please try again."}
-      </p>
-
-      <SendVerificationEmailForm />
     </div>
   );
 }

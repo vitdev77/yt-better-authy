@@ -1,9 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { resetPassword } from "@/lib/auth-client";
@@ -49,36 +56,88 @@ export const ResetPasswordForm = ({ token }: ResetPasswordFormProps) => {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full space-y-4"
-      autoComplete="off"
-    >
-      <div className="space-y-2">
-        <Label htmlFor="newPassword">New Password</Label>
-        <Input
-          id="newPassword"
-          name="newPassword"
-          type="password"
-          disabled={isPending}
-          autoComplete="off"
-        />
-      </div>
+    // <form
+    //   onSubmit={handleSubmit}
+    //   className="w-full space-y-4"
+    //   autoComplete="off"
+    // >
+    //   <div className="space-y-2">
+    //     <Label htmlFor="newPassword">New Password</Label>
+    //     <Input
+    //       id="newPassword"
+    //       name="newPassword"
+    //       type="password"
+    //       disabled={isPending}
+    //       autoComplete="off"
+    //     />
+    //   </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
-        <Input
-          id="confirmNewPassword"
-          name="confirmNewPassword"
-          type="password"
-          disabled={isPending}
-          autoComplete="off"
-        />
-      </div>
+    //   <div className="space-y-2">
+    //     <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
+    //     <Input
+    //       id="confirmNewPassword"
+    //       name="confirmNewPassword"
+    //       type="password"
+    //       disabled={isPending}
+    //       autoComplete="off"
+    //     />
+    //   </div>
 
-      <Button type="submit" className="w-full" disabled={isPending}>
-        {isPending ? "Please wait..." : "Reset password"}
-      </Button>
-    </form>
+    //   <Button type="submit" className="w-full" disabled={isPending}>
+    //     {isPending ? "Please wait..." : "Reset password"}
+    //   </Button>
+    // </form>
+
+    <div className="flex flex-col gap-6">
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="text-xl">Change your password</CardTitle>
+          <CardDescription>
+            Please enter your new password. Make sure it is at least 6
+            characters.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={handleSubmit}
+            className="w-full space-y-4"
+            autoComplete="off"
+          >
+            <FieldGroup>
+              <Field>
+                <FieldLabel htmlFor="newPassword">New Password</FieldLabel>
+                <Input
+                  id="newPassword"
+                  name="newPassword"
+                  type="password"
+                  disabled={isPending}
+                  autoComplete="off"
+                  autoFocus
+                  // required
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="confirmNewPassword">
+                  Confirm New Password
+                </FieldLabel>
+                <Input
+                  id="confirmNewPassword"
+                  name="confirmNewPassword"
+                  type="password"
+                  disabled={isPending}
+                  autoComplete="off"
+                  // required
+                />
+              </Field>
+              <Field>
+                <Button type="submit" disabled={isPending}>
+                  {isPending ? "Please wait..." : "Reset password"}
+                </Button>
+              </Field>
+            </FieldGroup>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 };

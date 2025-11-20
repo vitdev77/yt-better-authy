@@ -20,6 +20,7 @@ import {
 import { UserRoleSelect } from "@/components/user-role-select";
 import { auth } from "@/lib/auth";
 import { UserRole } from "@prisma/client";
+import { ShieldCheck, ShieldQuestionMark, Verified } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -93,7 +94,16 @@ export default async function AdminPage() {
                     ...{user.id.slice(-3)}
                   </span>
                 </TableCell>
-                <TableCell>{user.name}</TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-1">
+                    {user.emailVerified === true ? (
+                      <ShieldCheck className="stroke-green-600 size-4" />
+                    ) : (
+                      <ShieldQuestionMark className="stroke-amber-400 size-4" />
+                    )}{" "}
+                    {user.name}
+                  </div>
+                </TableCell>
                 <TableCell>{user.email}</TableCell>
                 <TableCell>
                   <UserRoleSelect
