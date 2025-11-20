@@ -26,6 +26,63 @@ model Post {
   @@map("posts")
 }
 
+model Brand {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+
+  name     String
+  imageUrl String?
+
+  series Series[]
+
+  @@map("brands")
+}
+
+model Series {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+
+  name String
+
+  products Product[]
+
+  brandId String
+  brand   Brand  @relation(fields: [brandId], references: [id])
+
+  @@map("series")
+}
+
+model Product {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+
+  name     String
+  imageUrl String
+
+  seriesId String
+  series   Series @relation(fields: [seriesId], references: [id])
+
+  productColorId String
+  productColor   ProductColor @relation(fields: [productColorId], references: [id])
+
+  @@map("products")
+}
+
+model ProductColor {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatadAt DateTime @updatedAt
+
+  name String
+
+  products Product[]
+
+  @@map("productColors")
+}
+
 model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())

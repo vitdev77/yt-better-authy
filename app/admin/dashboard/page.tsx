@@ -7,20 +7,23 @@ import {
   PlaceholderEditUserButton,
 } from "@/components/edit-user-button";
 import { ReturnButton } from "@/components/return-button";
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { UserRoleSelect } from "@/components/user-role-select";
 import { auth } from "@/lib/auth";
 import { UserRole } from "@prisma/client";
-import { ShieldCheck, ShieldQuestionMark, Verified } from "lucide-react";
+import { ShieldCheck, ShieldQuestionMark } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -96,11 +99,22 @@ export default async function AdminPage() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center gap-1">
-                    {user.emailVerified === true ? (
-                      <ShieldCheck className="stroke-green-600 size-4" />
-                    ) : (
-                      <ShieldQuestionMark className="stroke-amber-400 size-4" />
-                    )}{" "}
+                    <Tooltip>
+                      <TooltipTrigger>
+                        {user.emailVerified === true ? (
+                          <ShieldCheck className="stroke-green-600 size-4" />
+                        ) : (
+                          <ShieldQuestionMark className="stroke-amber-400 size-4" />
+                        )}
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>
+                          {user.emailVerified === true
+                            ? "Verified"
+                            : "Not verified"}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
                     {user.name}
                   </div>
                 </TableCell>

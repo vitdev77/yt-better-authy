@@ -92,7 +92,7 @@ export const LoginForm = ({
                   id="password"
                   name="password"
                   type="password"
-                  placeholder="Your Password"
+                  placeholder="•••••••••••••••"
                   disabled={isPending}
                   autoComplete="new-password"
                   // required

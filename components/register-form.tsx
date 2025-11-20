@@ -100,6 +100,7 @@ export const RegisterForm = ({
                   id="password"
                   name="password"
                   type="password"
+                  placeholder="•••••••••••••••"
                   disabled={isPending}
                   autoComplete="new-password"
                   // required
